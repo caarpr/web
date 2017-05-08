@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+.success {
+  background-color: lightgreen;
+}
+.warning {
+  background-color: pink;
+}
+
+td, th {
+  margin: 0;
+  padding: 0.25em 0.5em;
+}
+

@@ -1,0 +1,22 @@
+[data-controller=welcome] {
+  &[data-action=index] {
+    h1, h2 {
+      text-align: center;
+    }
+    h2 {
+      margin-top: 3em;
+    }
+
+    .volunteer-chart-container, .postcard-chart-container, .new-volunteer-chart-container {
+      height: 200px;
+      width: 400px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    table {
+      margin: 0 auto;
+    }
+  }
+}
+

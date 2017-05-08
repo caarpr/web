@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  starts_at: 2017-05-07 18:12:35
+  ends_at: 2017-05-07 18:12:35
+  postcards_collected: 1
+  volunteers_collected: 1
+  status: MyString
+
+two:
+  starts_at: 2017-05-07 18:12:35
+  ends_at: 2017-05-07 18:12:35
+  postcards_collected: 1
+  volunteers_collected: 1
+  status: MyString

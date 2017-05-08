@@ -1,0 +1,52 @@
+<%= form_for(table_location) do |f| %>
+  <% if table_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(table_location.errors.count, "error") %> prohibited this table_location from being saved:</h2>
+
+      <ul>
+      <% table_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ward %>
+    <%= f.text_field :ward %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.text_field :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= f.label :starts_at %>
+    <%= f.datetime_select :starts_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ends_at %>
+    <%= f.datetime_select :ends_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class TableLocation < ApplicationRecord
+end

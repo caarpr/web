@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Starts at:</strong>
+  <%= @table_event.starts_at %>
+</p>
+
+<p>
+  <strong>Ends at:</strong>
+  <%= @table_event.ends_at %>
+</p>
+
+<p>
+  <strong>Postcards collected:</strong>
+  <%= @table_event.postcards_collected %>
+</p>
+
+<p>
+  <strong>Volunteers collected:</strong>
+  <%= @table_event.volunteers_collected %>
+</p>
+
+<p>
+  <strong>Volunteers attended:</strong>
+  <%= @table_event.volunteers_attended %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @table_event.status %>
+</p>
+
+<%= link_to 'Edit', edit_table_event_path(@table_event) %> |
+<%= link_to 'Back', table_events_path %>

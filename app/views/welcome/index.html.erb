@@ -1,0 +1,171 @@
+<h1>Northside CPAC May Goals</h1>
+
+
+<h2>Unique Volunteers Per Ward</h2>
+
+<div class="volunteer-chart-container">
+  <canvas id="volunteer-chart"></canvas>
+</div>
+
+
+<h2>Point People</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ward</th>
+      <th>Table Owners</th>
+      <th>Business Liaisons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="">48th</td>
+      <td class="success">
+        Katie Gilbert
+      </td>
+      <td class="warning"></td>
+    </tr>
+    <tr>
+      <td class=""></td>
+      <td class="warning">&nbsp;</td>
+      <td class="warning"></td>
+    </tr>
+    <tr>
+      <td class="">49th</td>
+      <td class="success">Hollian Wint</td>
+      <td class="warning"></td>
+    </tr>
+    <tr>
+      <td class=""></td>
+      <td class="warning">&nbsp;</td>
+      <td class="warning"></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Postcards</h2>
+<div class="postcard-chart-container">
+  <canvas id="postcard-chart"></canvas>
+</div>
+
+<h2>New Volunteers</h2>
+<div class="new-volunteer-chart-container">
+  <canvas id="new-volunteer-chart"></canvas>
+</div>
+
+<script type="text/javascript">
+
+  var ctx = document.getElementById("volunteer-chart");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["48th", "49th", "May Goal"],
+      datasets: [{
+        label: '# of Volunteers',
+        data: [3, 3, 15],
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255,99,132,1)',
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+
+
+  var colors = {
+    backgroundColor: {
+      '48': 'rgba(54, 162, 235, 0.2)',
+      '49': 'rgba(75, 192, 192, 0.2)',
+    },
+    borderColor: {
+      '48': 'rgba(54, 162, 235, 1)',
+      '49': 'rgba(75, 192, 192, 1)'
+    }
+  };
+
+  var ctx = document.getElementById("postcard-chart");
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["April", "May"],
+      datasets: [
+        <% @postcards_by_ward.each do |ward, data| %>
+          {
+            label: '<%= ward %>th',
+            data: <%= data %>,
+            backgroundColor: colors['backgroundColor'][<%= ward %>],
+            borderColor: colors['borderColor'][<%= ward %>]
+          },
+        <% end %>
+      ],
+      borderWidth: 1
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+
+  var ctx = document.getElementById("new-volunteer-chart");
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ["April", "May"],
+      datasets: [
+        <% @new_volunteers_by_ward.each do |ward, data| %>
+          {
+            label: '<%= ward %>th',
+            data: <%= data %>,
+            backgroundColor: colors['backgroundColor'][<%= ward %>],
+            borderColor: colors['borderColor'][<%= ward %>]
+          },
+        <% end %>
+      ],
+      borderWidth: 1
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+</script>
+
+
