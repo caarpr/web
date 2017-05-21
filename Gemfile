@@ -43,6 +43,8 @@ gem 'marco-polo', '~> 1.2'
 gem 'transformable', '~> 1.0'
 
 group :development, :test do
+  gem 'letter_opener', '~> 1.4'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
