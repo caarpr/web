@@ -14,15 +14,103 @@
  *= require_self
  */
 
-.success {
-  background-color: lightgreen;
+
+// reset
+
+html { 
+  box-sizing: border-box;
 }
-.warning {
-  background-color: pink;
+
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+button, input, select, textarea {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 2em 0 1em;
+}
+
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+img, embed, iframe, object, audio, video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 td, th {
   margin: 0;
   padding: 0.25em 0.5em;
 }
+
+
+// site chrome
+
+header {
+  padding: 0.25em;
+
+  background: #272;
+  font-size: 40px;
+  line-height: 1.5em;
+  font-weight: bold;
+
+  a, a:visited, a:active, a:hover {
+    color: white;
+    text-decoration: none;
+    float: right;
+    background: none;
+
+    font-size: 12px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.message {
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+  border: solid 1px #000;
+  border-radius: 4px;
+
+  &.success {
+    background: lightgreen;
+    border-color: green;
+  }
+  &.notice {
+    background: lightyellow;
+    border-color: goldenrod;
+  }
+  &.alert {
+    background: lightyellow;
+    border-color: goldenrod;
+  }
+  &.error {
+    background: pink;
+    border-color: red;
+  }
+}
+
+
+
+
+
 
