@@ -1,3 +1,15 @@
 // Place all the styles related to the table_locations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+[data-controller=table_locations] {
+  .risk-red {
+    background: pink;
+  }
+  .risk-yellow {
+    background: lightyellow;
+  }
+  .risk-green {
+    background: lightgreen;
+  }
+}

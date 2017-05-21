@@ -17,16 +17,14 @@
   <tbody>
     <% @table_locations.each do |table_location| %>
       <tr>
-        <td><%= table_location.name %></td>
+        <td><%= link_to table_location.name, table_location %></td>
         <td><%= table_location.ward %></td>
         <td><%= table_location.status %></td>
         <td><%= table_location.latitude %></td>
         <td><%= table_location.longitude %></td>
         <td><%= table_location.starts_at %></td>
         <td><%= table_location.ends_at %></td>
-        <td><%= link_to 'Show', table_location %></td>
-        <td><%= link_to 'Edit', edit_table_location_path(table_location) %></td>
-        <td><%= link_to 'Destroy', table_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><% link_to 'Destroy', table_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Table Location', new_table_location_path %>
+<% link_to 'New Table Location', new_table_location_path %>

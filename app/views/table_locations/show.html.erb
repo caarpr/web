@@ -1,7 +1,4 @@
-<p>
-  <strong>Name:</strong>
-  <%= @table_location.name %>
-</p>
+<h1><%= @table_location.name %> Table Details</h1>
 
 <p>
   <strong>Ward:</strong>
@@ -32,6 +29,39 @@
   <strong>Ends at:</strong>
   <%= @table_location.ends_at %>
 </p>
+
+<h2>Upcoming Table Events</h2>
+
+<table>
+  <thead>
+    <tbody>
+      <tr>
+        <th></th>
+        <th colspan='3'>Staff RSVP</th>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <th>YES</th>
+        <th>MAYBE</th>
+        <th>NO</th>
+      </tr>
+    </tbody>
+  </thead>
+<% @table_events.each do |event| %>
+  <tr class="risk-<%= event.risk %>">
+    <td>
+      <%= link_to event do %>
+        <%= event.starts_at.to_s(:short_timestamp) %> - <%= event.ends_at.to_s(:short_time) %>
+      <% end %>
+    </td>
+    <td><%= event.attendees.yes.count %></td>
+    <td><%= event.attendees.maybe.count %></td>
+    <td><%= event.attendees.no.count %></td>
+  </tr>
+<% end %>
+</table>
+
+<br><br>
 
 <%= link_to 'Edit', edit_table_location_path(@table_location) %> |
 <%= link_to 'Back', table_locations_path %>

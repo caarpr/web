@@ -9,4 +9,20 @@ class TableEvent < ApplicationRecord
   def volunteers_attended
     attendees.count
   end
+
+  def fully_staffed?
+    attendees.yes.count >= 3
+  end
+
+  def risk
+    return nil if starts_at < Time.now
+
+    return 'green' if fully_staffed?
+
+    if starts_at > 1.week.from_now
+      'yellow'
+    else
+      'red'
+    end
+  end
 end
