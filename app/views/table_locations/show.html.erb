@@ -41,22 +41,53 @@
       </tr>
       <tr>
         <th>Date</th>
+        <th>Status</th>
         <th>YES</th>
         <th>MAYBE</th>
         <th>NO</th>
       </tr>
     </tbody>
   </thead>
-<% @table_events.each do |event| %>
+<% @upcoming_events.each do |event| %>
   <tr class="risk-<%= event.risk %>">
     <td>
       <%= link_to event do %>
         <%= event.starts_at.to_s(:short_timestamp) %> - <%= event.ends_at.to_s(:short_time) %>
       <% end %>
     </td>
+    <td><%= event.status %></td>
     <td><%= event.attendees.yes.count %></td>
     <td><%= event.attendees.maybe.count %></td>
     <td><%= event.attendees.no.count %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Recent Table Events</h2>
+
+<table>
+  <thead>
+    <tbody>
+      <tr>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Staff</th>
+        <th>Postcards</th>
+        <th>Potential Volunteers</th>
+      </tr>
+    </tbody>
+  </thead>
+<% @recent_events.each do |event| %>
+  <tr>
+    <td>
+      <%= link_to event do %>
+        <%= event.starts_at.to_s(:short_timestamp) %> - <%= event.ends_at.to_s(:short_time) %>
+      <% end %>
+    </td>
+    <td><%= event.status %></td>
+    <td><%= event.attendees.yes.count %></td>
+    <td><%= event.postcards_collected %></td>
+    <td><%= event.volunteers_collected %></td>
   </tr>
 <% end %>
 </table>
