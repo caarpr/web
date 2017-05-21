@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Devise for authentication
+gem 'devise', '~> 4.3'
+
 gem 'table_print', '~> 1.5'
 gem 'marco-polo', '~> 1.2'
 
