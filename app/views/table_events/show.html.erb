@@ -53,6 +53,7 @@
           <td><%= volunteer.email %></td>
           <td><%= format_phone_number volunteer.phone_number %></td>
           <td><%= f.submit "Update RSVP" %></td>
+          <td><%= link_to 'delete', attendee, method: :delete %></td>
         <% end %>
       </tr>
     <% end %>

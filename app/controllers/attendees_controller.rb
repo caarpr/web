@@ -30,7 +30,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to :back, success: 'Attendee was successfully created.' }
+        format.html { redirect_to :back, success: 'RSVP was successfully added.' }
         format.json { render :show, status: :created, location: @attendee }
       else
         format.html { redirect_to :back, error: "There was a problem. #{@attendee.errors.full_messages.join('. ')}" }
@@ -44,7 +44,7 @@ class AttendeesController < ApplicationController
   def update
     respond_to do |format|
       if @attendee.update(attendee_params)
-        format.html { redirect_to :back, success: 'Attendee was successfully updated.' }
+        format.html { redirect_to :back, success: 'RSVP was successfully updated.' }
         format.json { render :show, status: :ok, location: @attendee }
       else
         format.html { redirect_to :back, error: "There was a problem. #{@attendee.errors.full_messages.join('. ')}" }
@@ -58,7 +58,7 @@ class AttendeesController < ApplicationController
   def destroy
     @attendee.destroy
     respond_to do |format|
-      format.html { redirect_to attendees_url, notice: 'Attendee was successfully destroyed.' }
+        format.html { redirect_to :back, success: 'RSVP was successfully removed.' }
       format.json { head :no_content }
     end
   end
