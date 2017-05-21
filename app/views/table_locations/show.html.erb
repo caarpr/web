@@ -1,4 +1,17 @@
+<%= link_to "&laquo; Back to all tables".html_safe, table_locations_path %>
+
 <h1><%= @table_location.name %> Table Details</h1>
+
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @table_location.latitude %>,<%= @table_location.longitude %>&markers=color:red|<%= @table_location.latitude %>,<%= @table_location.longitude %>&zoom=16&size=400x200&key=AIzaSyDK26Uc4UI8DtC3xfErJ_ImXKPoJAHceh4">
+
+<br><br>
+
+<p>
+  <strong>Time:</strong>
+  <%= @table_location.starts_at.strftime("%As %-I:%M%P") %> - <%= @table_location.ends_at.to_s(:short_time) %>
+</p>
+
+<br>
 
 <p>
   <strong>Ward:</strong>
@@ -10,25 +23,18 @@
   <%= @table_location.status %>
 </p>
 
+<br>
+
 <p>
-  <strong>Latitude:</strong>
-  <%= @table_location.latitude %>
+  <strong>Total Postcards:</strong>
+  <%= @table_location.postcards_collected %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
-  <%= @table_location.longitude %>
+  <strong>Total New Volunteers:</strong>
+  <%= @table_location.volunteers_collected %>
 </p>
 
-<p>
-  <strong>Starts at:</strong>
-  <%= @table_location.starts_at %>
-</p>
-
-<p>
-  <strong>Ends at:</strong>
-  <%= @table_location.ends_at %>
-</p>
 
 <h2>Upcoming Table Events</h2>
 
@@ -91,8 +97,3 @@
   </tr>
 <% end %>
 </table>
-
-<br><br>
-
-<%= link_to 'Edit', edit_table_location_path(@table_location) %> |
-<%= link_to 'Back', table_locations_path %>

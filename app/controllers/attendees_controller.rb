@@ -30,10 +30,10 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully created.' }
+        format.html { redirect_to :back, success: 'Attendee was successfully created.' }
         format.json { render :show, status: :created, location: @attendee }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, error: "There was a problem. #{@attendee.errors.full_messages.join('. ')}" }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
       end
     end
@@ -44,10 +44,10 @@ class AttendeesController < ApplicationController
   def update
     respond_to do |format|
       if @attendee.update(attendee_params)
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully updated.' }
+        format.html { redirect_to :back, success: 'Attendee was successfully updated.' }
         format.json { render :show, status: :ok, location: @attendee }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back, error: "There was a problem. #{@attendee.errors.full_messages.join('. ')}" }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
       end
     end
@@ -71,6 +71,6 @@ class AttendeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendee_params
-      params.require(:attendee).permit(:volunteer_id, :status, :event_id, :event_type)
+      params.require(:attendee).permit(:volunteer_id, :status, :event_id, :event_type, :rsvp)
     end
 end

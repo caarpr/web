@@ -1,26 +1,10 @@
-<p>
-  <strong>Starts at:</strong>
-  <%= @table_event.starts_at %>
-</p>
+<%= link_to "&laquo; Back to #{h @table_event.table_location.name} table".html_safe, @table_event.table_location %>
+
+<h1><%= @table_event.table_location.name %> Table - <%= @table_event.starts_at.strftime("%b %-d %Y") %></h1>
 
 <p>
-  <strong>Ends at:</strong>
-  <%= @table_event.ends_at %>
-</p>
-
-<p>
-  <strong>Postcards collected:</strong>
-  <%= @table_event.postcards_collected %>
-</p>
-
-<p>
-  <strong>Volunteers collected:</strong>
-  <%= @table_event.volunteers_collected %>
-</p>
-
-<p>
-  <strong>Volunteers attended:</strong>
-  <%= @table_event.volunteers_attended %>
+  <strong>Time:</strong>
+  <%= @table_event.starts_at.to_s(:short_timestamp) %> - <%= @table_event.ends_at.to_s(:short_time) %>
 </p>
 
 <p>
@@ -28,5 +12,63 @@
   <%= @table_event.status %>
 </p>
 
-<%= link_to 'Edit', edit_table_event_path(@table_event) %> |
-<%= link_to 'Back', table_events_path %>
+<% if @table_event.past? %>
+  <p>
+    <strong>Postcards collected:</strong>
+    <%= @table_event.postcards_collected %>
+  </p>
+
+  <p>
+    <strong>Volunteers collected:</strong>
+    <%= @table_event.volunteers_collected %>
+  </p>
+
+  <p>
+    <strong>Volunteers attended:</strong>
+    <%= @table_event.volunteers_attended %>
+  </p>
+<% end %>
+
+<h2>Staff</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>RSVP</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @table_event.attendees.sort_by{ |a| a.volunteer.full_name }.each do |attendee| %>
+      <% volunteer = attendee.volunteer %>
+      <tr>
+        <%= form_for attendee do |f| %>
+          <td>
+            <%= f.select :rsvp, %w{yes no maybe} %>
+          </td>
+          <td><%= volunteer.full_name %></td>
+          <td><%= volunteer.email %></td>
+          <td><%= format_phone_number volunteer.phone_number %></td>
+          <td><%= f.submit "Update RSVP" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <%= form_for @table_event.attendees.build do |f| %>
+        <%= f.hidden_field :event_type %>
+        <%= f.hidden_field :event_id %>
+        <td><%= f.select :rsvp, %w{yes no maybe} %></td>
+        <td><%= f.select :volunteer_id, (Volunteer.all - @table_event.volunteers).collect{ |v| [v.full_name, v.id] } %></td>
+        <td></td>
+        <td></td>
+        <td><%= f.submit "Add" %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
