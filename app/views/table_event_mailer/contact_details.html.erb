@@ -1,0 +1,31 @@
+<h1>Contact Details</h1>
+<%= @table_event.table_location.name %> table on <%= @table_event.starts_at.strftime("%-m/%-d") %>
+
+<h2>
+  Emails
+</h2>
+
+<%= link_to "Start a new email to all attendees", "mailto:#{@table_event.volunteers.collect(&:email).select(&:present?).join(",")}" %>
+<br><br>
+<%= @table_event.volunteers.collect(&:email).select(&:present?).join(",") %>
+
+<h2>
+  Phones
+</h2>
+
+<%= @table_event.volunteers.collect(&:phone_number).select(&:present?).join(",") %>
+
+<h2>
+  Individuals
+</h2>
+
+<% @table_event.volunteers.each do |v| %>
+  <p>
+    <%= v.full_name %><br>
+    <% if v.phone_number.present? %>
+      <%= link_to format_phone_number(v.phone_number), "tel:#{v.phone_number}" %><br>
+    <% end %>
+    <%= mail_to v.email if v.email.present? %>
+  </p>
+<% end %>
+

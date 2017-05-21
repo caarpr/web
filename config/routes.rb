@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :attendees
-  resources :table_events
+  resources :table_events do
+    member do
+      post :send_contact_details, as: :send_contact_details
+    end
+  end
   resources :table_locations
   resources :volunteers
 

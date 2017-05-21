@@ -1,0 +1,17 @@
+Contact details for <%= @table_event.table_location.name %> table on <%= @table_event.starts_at.strftime("%-m/%-d") %>
+
+EMAILS
+
+<%= @table_event.volunteers.collect(&:email).select(&:present?).join(",") %>
+
+PHONES
+
+<%= @table_event.volunteers.collect(&:phone_number).select(&:present?).join(",") %>
+
+INDIVIDUALS
+
+<% @table_event.volunteers.each do |v| %>
+<%= v.full_name %>
+<%= [format_phone_number(v.phone_number), v.email].select(&:present?).join("\n") %>
+
+<% end %>

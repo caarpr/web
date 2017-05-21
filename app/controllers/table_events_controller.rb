@@ -1,7 +1,7 @@
 class TableEventsController < ApplicationController
   before_filter :require_superuser!
 
-  before_action :set_table_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_table_event, only: [:show, :edit, :update, :destroy, :send_contact_details]
 
   # GET /table_events
   # GET /table_events.json
@@ -61,6 +61,12 @@ class TableEventsController < ApplicationController
       format.html { redirect_to table_events_url, notice: 'Table event was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def send_contact_details
+    TableEventMailer.contact_details(@table_event, current_user).deliver
+
+    redirect_to :back, success: "Email sent!"
   end
 
   private

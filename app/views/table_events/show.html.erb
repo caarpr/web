@@ -73,3 +73,14 @@
     </tr>
   </tbody>
 </table>
+
+<h2>Contact Shortcuts</h2>
+
+<%= link_to "Start a new email to all attendees", "mailto:#{@table_event.volunteers.collect(&:email).select(&:present?).join(",")}" %>
+<br><br>
+<%= link_to "Email me everyone's contact info", send_contact_details_table_event_path(@table_event), method: :post %>
+<br><br>
+<%= @table_event.volunteers.collect(&:email).select(&:present?).join(",") %>
+<br><br>
+<%= @table_event.volunteers.collect(&:phone_number).select(&:present?).join(",") %>
+
