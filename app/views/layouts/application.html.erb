@@ -9,17 +9,35 @@
   </head>
 
   <body data-controller="<%= controller.controller_name %>" data-action="<%= controller.action_name %>">
-    <header>
-      CPAC Tools
-      <% if user_signed_in? %>
-        <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
-      <% end %>
-    </header>
+      <div class="main">
+        <header>
+          <%= link_to root_path, class: "logo" do %>
+            <%= image_tag "logo_hands.png" %> CPAC Tools
+          <% end %>
 
-    <%= render "layouts/messages" %>
+            <ul>
+              <% if user_signed_in? %>
+                <li><%= link_to "Tables", table_locations_path %></li>
+                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li>
+                  <%= link_to "Sign In", new_user_session_path %>
+                </li>
+              <% end %>
+            </ul>
+        </header>
 
-    <%= yield %>
+        <%= render "layouts/messages" %>
+
+        <div class="content">
+          <%= yield %>
+        </div>
+
+        <footer>
+          &copy; <%= Time.now.year %> CAARPR
+        </footer>
+      </div>
+    </div>
+
   </body>
 </html>
