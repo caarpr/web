@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def require_basic_auth!
-    return if authenticate_with_http_basic do |username, password|
-      username == "northside" && password == ENV['BASIC_AUTH_PASSWORD']
-    end
+  def require_superuser!
+    authenticate_user!
 
-    request_http_basic_authentication 
+    unless current_user.superuser?
+      flash[:error] = "You must be an admin to access this section"
+      redirect_to root_path
+    end
   end
 end

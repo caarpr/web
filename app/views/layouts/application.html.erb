@@ -11,6 +11,7 @@
   <body data-controller="<%= controller.controller_name %>" data-action="<%= controller.action_name %>">
     <div class="notice"><%= notice %></div>
     <div class="alert"><%= alert %></div>
+    <div class="error"><%= flash[:error] %></div>
     <%= yield %>
   </body>
 </html>

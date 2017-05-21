@@ -1,5 +1,5 @@
 class TableLocationsController < ApplicationController
-  before_filter :require_basic_auth!
+  before_filter :require_superuser!
 
   before_action :set_table_location, only: [:show, :edit, :update, :destroy]
 

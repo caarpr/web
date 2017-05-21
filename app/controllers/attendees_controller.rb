@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_filter :require_basic_auth!
+  before_filter :require_superuser!
 
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
 

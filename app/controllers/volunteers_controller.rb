@@ -1,5 +1,5 @@
 class VolunteersController < ApplicationController
-  before_filter :require_basic_auth!
+  before_filter :require_superuser!
 
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
 
