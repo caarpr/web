@@ -40,6 +40,7 @@ gem 'devise', '~> 4.3'
 
 gem 'table_print', '~> 1.5'
 gem 'marco-polo', '~> 1.2'
+gem 'transformable', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

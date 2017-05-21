@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Name:</strong>
+  <%= @volunteer.full_name %>
+</p>
+
+<p>
   <strong>Email:</strong>
   <%= @volunteer.email %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @volunteer.full_name %>
+  <strong>Phone:</strong>
+  <%= format_phone_number @volunteer.phone_number %>
 </p>
 
 <%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |

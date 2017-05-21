@@ -5,8 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Email</th>
       <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +15,9 @@
   <tbody>
     <% @volunteers.each do |volunteer| %>
       <tr>
-        <td><%= volunteer.email %></td>
         <td><%= volunteer.full_name %></td>
+        <td><%= volunteer.email %></td>
+        <td><%= format_phone_number volunteer.phone_number %></td>
         <td><%= link_to 'Show', volunteer %></td>
         <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
         <td><%= link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
