@@ -13,33 +13,39 @@
 
   <div class="field">
     <%= f.label :table_location_id %>
-    <%= f.text_field :table_location_id %>
+    <%= f.select :table_location_id, TableLocation.all.collect{|tl| [tl.name, tl.id]} %>
   </div>
 
   <div class="field">
     <%= f.label :starts_at %>
-    <%= f.datetime_select :starts_at %>
+    <%= f.datetime_select :starts_at, {start_year: Time.now.year, end_year: Time.now.year, minute_step: 15} %>
   </div>
 
   <div class="field">
     <%= f.label :ends_at %>
-    <%= f.datetime_select :ends_at %>
+    <%= f.datetime_select :ends_at, {start_year: Time.now.year, end_year: Time.now.year, minute_step: 15} %>
   </div>
 
-  <div class="field">
-    <%= f.label :postcards_collected %>
-    <%= f.number_field :postcards_collected %>
-  </div>
+  <% if table_event.persisted? %>
+    <div class="field">
+      <%= f.label :postcards_collected %>
+      <%= f.number_field :postcards_collected %>
+    </div>
 
-  <div class="field">
-    <%= f.label :volunteers_collected %>
-    <%= f.number_field :volunteers_collected %>
-  </div>
+    <div class="field">
+      <%= f.label :volunteers_collected %>
+      <%= f.number_field :volunteers_collected %>
+    </div>
 
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.text_field :status %>
-  </div>
+    <div class="field">
+      <%= f.label :status %>
+      <%= f.select :status, ["Scheduled", "Success", "Canceled"].collect{|s| [s, s.downcase]} %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= f.hidden_field :status, value: "scheduled" %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

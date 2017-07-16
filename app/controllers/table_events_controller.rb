@@ -16,7 +16,7 @@ class TableEventsController < ApplicationController
 
   # GET /table_events/new
   def new
-    @table_event = TableEvent.new
+    @table_event = TableEvent.new(table_location_id: params[:table_location_id])
   end
 
   # GET /table_events/1/edit
