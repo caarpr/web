@@ -16,7 +16,17 @@ class TableEventsController < ApplicationController
 
   # GET /table_events/new
   def new
-    @table_event = TableEvent.new(table_location_id: params[:table_location_id])
+    table_location = TableLocation.find_by_id(params[:table_location_id])
+
+    # start on saturday noon to three
+    reference_starts_at = 0.days.ago.beginning_of_week + 5.days + 12.hours
+    reference_ends_at = reference_starts_at + 3.hours
+
+    @table_event = TableEvent.new(
+      table_location: table_location,
+      starts_at: reference_starts_at,
+      ends_at: reference_ends_at
+    )
   end
 
   # GET /table_events/1/edit
