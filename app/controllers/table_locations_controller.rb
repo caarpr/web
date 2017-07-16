@@ -13,7 +13,7 @@ class TableLocationsController < ApplicationController
   # GET /table_locations/1.json
   def show
     @upcoming_events = @table_location.table_events.where("starts_at > ?", Time.now).order(:starts_at)
-    @recent_events = @table_location.table_events.where(starts_at: 1.month.ago..Time.now).order(:starts_at)
+    @recent_events = @table_location.table_events.where(starts_at: 1.month.ago..Time.now).order("starts_at desc")
   end
 
   # GET /table_locations/new
