@@ -42,6 +42,8 @@ gem 'table_print', '~> 1.5'
 gem 'marco-polo', '~> 1.2'
 gem 'transformable', '~> 1.0'
 
+gem 'geocoder', '~> 1.4'
+
 group :development, :test do
   gem 'letter_opener', '~> 1.4'
 

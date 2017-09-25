@@ -1,6 +1,9 @@
 class Volunteer < ApplicationRecord
   include Transformable
 
+  geocoded_by :address
+  after_validation :geocode
+
   clean(:phone_number) do |num| 
     cleaned = num.gsub(/\D/, '')
 
