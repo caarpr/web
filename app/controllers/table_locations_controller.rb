@@ -73,6 +73,6 @@ class TableLocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def table_location_params
-      params.require(:table_location).permit(:name, :status, :latitude, :longitude, :starts_at, :ends_at, :ward)
+      params.require(:table_location).permit(:name, :status, :latitude, :longitude, :starts_at, :ends_at, :ward, :instructions)
     end
 end
